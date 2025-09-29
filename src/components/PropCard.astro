@@ -1,0 +1,11 @@
+---
+const {title, imgSrc, ctaUrl} = Astro.props;
+import { Image } from "astro:assets";
+---
+
+<div>
+    <Image class="card-img" src="{imgSrc} alt="" />
+    <div class="content-panel">
+        <h2>{title}</h2>
+    </div>
+</div>
