@@ -7,13 +7,13 @@ import "@fontsource/karla";
 <style is:global>
   /* We can use this style tag to set up colors, fonts, etc. */
   :root {
-    --color-background: rgb(24, 0, 24);
-    --color-text: rgb(240, 240, 240);
-    --color-accent: rgb(0, 200, 255);
-    --color-focus-ring: rgb(255, 0, 255);
+    --color-background: #F9F6F2;
+    --color-text: #1C1C1E;
+    --color-accent: #D4A017;
+    --color-focus-ring: #3FB9A0;
 
-    --font-body: "DM Sans Variable", sans-serif;
-    --font-headings: "DM Sans Variable", sans-serif;
+    --font-body: "Poppins", sans-serif;
+    --font-headings: "Poppins", sans-serif;
 
     font-size: 18px;
 
@@ -28,13 +28,23 @@ import "@fontsource/karla";
     color: var(--color-text);
     font-family: var(--font-body);
   }
-  h1,
-  h2,
+  h1 {
+      font-weight: bold;
+      color: var(--color-focus-ring);
+      font-size: 3rem;
+      padding: 1.5rem;
+  }
+  h2 {
+    font-weight: bold;
+    color: var(--color-accent);
+    font-size: 2rem;
+  }
   h3,
   h4,
   h5,
   h6 {
-    color: var(--color-accent);
+    color: var(--color-focus-ring);
+    font-size: 1.5rem;
   }
 
   /* default focus ring styles */
