@@ -1,58 +1,165 @@
 ---
-
+import TwoColumns from "@components/TwoColumns.astro"
 ---
 
-<h2>Tools</h2>
 
-<div class="tools-container">
-    <div class="tool-card">
-        <h3>Shaker</h3>
-        <p>A tin or glass used to mix cocktails with ice.</p>
+<h2 id="tools">Tools</h2>
+
+<TwoColumns>
+    <div slot="left">
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Shaker</h3>
+                    <p>A tin or glass used to mix cocktails with ice.</p>
+                </div>
+                <div class="content-image">
+                    <img src=src/assets/images/shaker.jpg alt="Shaker">
+                    </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Strainer</h3>
+                    <p>Filters ice, fruit, and herbs when pouring a drink.</p>
+                </div>
+                <div class="content-image">
+                    <img src=src/assets/images/strainer.jpg alt="Strainer">
+                    </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Muddler</h3>
+                    <p>A pestle-like tool for crushing fruits, herbs, or sugar.</p>
+                </div>
+                <div class="content-image">
+                    <img src=src/assets/images/muddler.jpg alt="Muddler">
+                    </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Juicer/Press</h3>
+                    <p>Extracts fresh juice from lemons, limes, or oranges.</p>
+                </div>
+                <div class="content-image">
+                    <img src=src/assets/images/juicer.jpg alt="Juicer">
+                    </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Tongs</h3>
+                    <p>For safely grabbing fruit for cocktails.</p>
+                </div>
+                <div class="content-image">
+                    <img src=src/assets/images/tongs.jpg alt="Tongs">
+                    </div>
+            </div>
+        </div>
     </div>
-
-<div class="tools-container">
-    <div class="tool-card"></div>
-        <h3>Mixing Glass</h3>
-        <p>A sturdy glass for stirred drinks like martinis or negronis.</p>
+    <div slot="right">
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Mixing Glass</h3>
+                    <p>A sturdy glass for stirred drinks like martinis or negronis.</p>
+                </div>
+                <div class="content-image">
+                    <img src=src/assets/images/mixingglass.jpg alt="Mixing Glass">
+                    </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Jigger</h3>
+                    <p>A double-sided measuring tool for accurate pours.</p>
+                </div>
+                <div class="content-image">
+                    <img src=src/assets/images/jigger.jpg alt="Jigger">
+                    </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Bar Spoon</h3>
+                    <p>Long-handled spoon for stirring and layering drinks.</p>
+                </div>
+                <div class="content-image">
+                    <img src=src/assets/images/barspoon.jpg alt="Bar-Spoon">
+                    </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Ice Scoop</h3>
+                    <p>For handling ice cleanly and safely.</p>
+                </div>
+                <div class="content-image">
+                   <img src=src/assets/images/scooper.jpg alt="Ice Scoop">
+                    </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Bar Key</h3>
+                    <p>For opening beer bottles.</p>
+                </div>
+                <div class="content-image">
+                    <img src=src/assets/images/barkey.jpg alt="Bar Key">
+                    </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Corkscrew</h3>
+                    <p>For opening wine bottles</p>
+                </div>
+                <div class="content-image">
+                    <img src=src/assets/images/corkscrew.jpg alt="Corkscrew">
+                    </div>
+            </div>
+        </div>
     </div>
+</TwoColumns>
 
-<div class="tools-container">
-    <div class="tool-card">
-        <h3>Strainer</h3>
-        <p>Filters ice, fruit, and herbs when pouring a drink.</p>
-    </div>
-    
-        <h3>Jigger</h3>
-        <p>A double-sided measuring tool for accurate pours.</p>
-
-        <h3>Muddler</h3>
-        <p></p>
-        <p>A pestle-like tool for crushing fruits, herbs, or sugar.</p>
-
-        <h3>Bar Spoon</h3>
-        <p>Long-handled spoon for stirring and layering drinks.</p>
-
-        <h3>Juicer/Press</h3>
-        <p>Extracts fresh juice from lemons, limes, or oranges.</p>
-
-        <h3>Zester/Peeler</h3>
-        <p>Creates citrus twists and peels for garnishes.</p>
-
-        <h3>Ice Scoop</h3>
-        <p>For handling ice cleanly and safely.</p>
-
-        <h3>Tongs</h3>
-        <p>For safely grabbing fruit for cocktails.</p>
-
-        <h3>Bar Key</h3>
-        <p>For opening beer bottles.</p>
-
-        <h3>Corkscrew</h3>
-        <p>For opening wine bottles</p>
-
-        <style>
-            h3 {
-            }
-        </style>
-    </div>
-</div>
+<style>
+    .content-box {
+        background: var(--color-background);
+        border: 2px solid var(--color-background);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin: 2rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .content-details {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+    .content-info {
+        flex: 2;
+    }
+    .content-image {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 120px;
+        min-height: 120px;
+        background: var(--color-background);
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+</style>

@@ -9,7 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource-variable/merriweather": "^5.2.6",
+    "@fontsource-variable/montserrat": "^5.2.8",
     "@fontsource/karla": "^5.2.8",
-    "astro": "^5.14.1"
+    "astro": "^5.14.1",
+    "astro-navbar": "^2.4.0"
   }
 }

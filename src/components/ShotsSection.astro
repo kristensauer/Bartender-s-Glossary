@@ -1,105 +1,206 @@
 ---
-
+import TwoColumns from "@components/TwoColumns.astro"
 ---
 
-<h2>Shots</h2>
 
-    <h3>Green Tea</h3>
+<h2 id="shots">Shots</h2>
 
-    <ul>1.0 oz Whiskey</ul>
-    <ul>1.0 oz Peach Schnapps</ul>
-    <ul>1.0 oz Ginger Ale</ul>
-    <ul>1.0 oz Sour Mix</ul>
+<TwoColumns>
+        <div slot="left">
+            <div class="content-box">
+                <div class="content-details">
+                    <div class="content-info">
+                        <h3>Green Tea</h3>
+                        <ul>1.0 oz Whiskey</ul>
+                        <ul>1.0 oz Peach Schnapps</ul>
+                        <ul>1.0 oz Ginger Ale</ul>
+                        <ul>1.0 oz Sour Mix</ul>
+                        <ol>Grab a pint glass and add ingredients</ol>
+                        <ol>Add ice and shake</ol>
+                        <ol>Grab a shot glass and strain shot</ol>
+                    </div>
+                    <div class="content-image">
+                        <img src="src/assets/images/greentea.jpg" alt="Green Tea" />
+                    </div>
+                </div>
+            </div>
+            <div class="content-box">
+                <div class="content-details">
+                    <div class="content-info">
+                        <h3>Jolly Rancher</h3>
+                        <ul>1.5 oz Raspberry Vodka</ul>
+                        <ul>0.75 oz Peach Schnapps</ul>
+                        <ul>0.75 oz Cranberry Juice</ul>
+                        <ol>Grab a pint glass and add ingredients</ol>
+                        <ol>Add ice and shake</ol>
+                        <ol>Grab a shot glass and strain shot</ol>
+                    </div>
+                    <div class="content-image">
+                        <img src="src/assets/images/jollyrancher.jpg" alt="Jolly Rancher" />
+                    </div>
+                </div>
+            </div>
+            <div class="content-box">
+                <div class="content-details">
+                    <div class="content-info">
+                        <h3>Blowjob</h3>
+                        <ul>1.0 oz Amaretto</ul>
+                        <ul>1.0 oz Irish Cream</ul>
+                        <ul>Whipped Cream</ul>
+                        <ol>Grab a pint glass and add ingredients</ol>
+                        <ol>Add ice and shake</ol>
+                        <ol>Grab a shot glass and strain shot</ol>
+                        <ol>Garnish with whipped cream</ol>
+                    </div>
+                    <div class="content-image">
+                        <img src="src/assets/images/blowjob.jpg" alt="Blowjob" />
+                    </div>
+                </div>
+            </div>
+            <div class="content-box">
+                <div class="content-details">
+                    <div class="content-info">
+                        <h3>Screaming Nazi</h3>
+                        <ul>1.0 oz Jagermeister</ul>
+                        <ul>1.0 oz Rumpleminze</ul>
+                        <ol>Grab a pint glass and add ingredients</ol>
+                        <ol>Add ice and shake</ol>
+                        <ol>Grab a shot glass and strain shot</ol>
+                    </div>
+                    <div class="content-image">
+                        <img src="src/assets/images/screamingnazi.jpg" alt="Screaming Nazi" />
+                    </div>
+                </div>
+            </div>
+            <div class="content-box">
+                <div class="content-details">
+                    <div class="content-info">
+                        <h3>Buttery Nipple</h3>
+                        <ul>1.0 oz Butterscotch Schnapps</ul>
+                        <ul>0.5 oz Irish Cream</ul>
+                        <ol>Grab a shot glass and pour Butterscotch Schnapps</ol>
+                        <ol>Gently pour Irish Cream on top</ol>
+                    </div>
+                    <div class="content-image">
+                        <img src="src/assets/images/butterynipple.jpg" alt="Buttery Nipple" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div slot="right">
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Lemon Drop</h3>
+                    <ul>1.5 oz Citrus Vodka</ul>
+                    <ul>0.75 oz Triple Sec</ul>
+                    <ul>0.75 oz Lemon Juice</ul>
+                    <ol>Grab a pint glass and add ingredients</ol>
+                    <ol>Add ice and shake</ol>
+                    <ol>Grab a shot glass and strain shot</ol>
+                </div>
+                <div class="content-image">
+                    <img src=src/assets/images/lemondrop.jpg alt="Lemon-Drop">
+                    </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Kamikaze</h3>
+                    <ul>1.5 oz Vodka</ul>
+                    <ul>0.75 oz Triple Sec</ul>
+                    <ul>0.75 oz Lime Juice</ul>
+                    <ol>Grab a pint glass and add ingredients</ol>
+                    <ol>Add ice and shake</ol>
+                    <ol>Grab a shot glass and strain shot</ol>
+                </div>
+                <div class="content-image">
+                   <img src=src/assets/images/kamikaze.jpg alt="Kamikaze">
+                    </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>White Tea</h3>
+                    <ul>1.0 oz Vodka</ul>
+                    <ul>1.0 oz Triple Sec</ul>
+                    <ul>1.0 oz Sprite</ul>
+                    <ul>1.0 oz Sour Mix</ul>
+                    <ol>Grab a pint glass and add ingredients</ol>
+                    <ol>Add ice and shake</ol>
+                    <ol>Grab a shot glass and strain shot</ol>
+                </div>
+                <div class="content-image">
+                    <img src=src/assets/images/whitetea.jpg alt="White-Tea">
+                    </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Gatorade</h3>
+                    <ul>1.5 oz Blueberry Vodka</ul>
+                    <ul>0.75 oz Sour Mix</ul>
+                    <ul>0.75 oz Lemonade</ul>
+                    <ul>0.5 oz Blue Curacao</ul>
+                    <ol>Grab a pint glass and add ingredients</ol>
+                    <ol>Add ice and shake</ol>
+                    <ol>Grab a shot glass and strain shot</ol>
+                </div>
+                <div class="content-image">
+                    <img src=src/assets/images/gatorade.jpg alt="Gatorade">
+                    </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="content-details">
+                <div class="content-info">
+                    <h3>Wet Pussy</h3>
+                    <ul>0.5 oz Vodka</ul>
+                    <ul>0.5 oz Peach Schnapps</ul>
+                    <ul>0.5 oz Orange Juice</ul>
+                    <ul>0.5 oz Cranberry Juice</ul>
+                    <ol>Grab a pint glass and add ingredients</ol>
+                    <ol>Add ice and shake</ol>
+                    <ol>Grab a shot glass and strain shot</ol>
+                </div>
+                <div class="content-image">
+                    <img src=src/assets/images/wetpussy.jpg alt="Wet-Pussy">
+                    </div>
+            </div>
+        </div>
+    </div>
+</TwoColumns>
 
-    <ol>Grab a pint glass and add ingredients</ol>
-    <ol>Add ice and shake</ol>
-    <ol>Grab a shot glass and strain shot</ol>
-
-    <h3>Lemon Drop</h3>
-
-    <ul>1.5 oz Citrus Vodka</ul>
-    <ul>0.75 oz Triple Sec</ul>
-    <ul>0.75 oz Lemon Juice</ul>
-
-    <ol>Grab a pint glass and add ingredients</ol>
-    <ol>Add ice and shake</ol>
-    <ol>Grab a shot glass and strain shot</ol>
-
-    <h3>Jolly Rancher</h3>
-
-    <ul>1.5 oz Raspberry Vodka</ul>
-    <ul>0.75 oz Peach Schnapps</ul>
-    <ul>0.75 oz Cranberry Juice</ul>
-
-    <ol>Grab a pint glass and add ingredients</ol>
-    <ol>Add ice and shake</ol>
-    <ol>Grab a shot glass and strain shot</ol>
-
-    <h3>Kamikaze</h3>
-
-    <ul>1.5 oz Vodka</ul>
-    <ul>0.75 oz Triple Sec</ul>
-    <ul>0.75 oz Lime Juice</ul>
-
-    <ol>Grab a pint glass and add ingredients</ol>
-    <ol>Add ice and shake</ol>
-    <ol>Grab a shot glass and strain shot</ol>
-
-    <h3>Blowjob</h3>
-
-    <ul>1.0 oz Amaretto</ul>
-    <ul>1.0 oz Irish Cream</ul>
-    <ul>Whipped Cream</ul>
-
-    <ol>Grab a pint glass and add ingredients</ol>
-    <ol>Add ice and shake</ol>
-    <ol>Grab a shot glass and strain shot</ol>
-    <ol>Garnish with whipped cream</ol>
-
-    <h3>White Tea</h3>
-
-    <ul>1.0 oz Vodka</ul>
-    <ul>1.0 oz Triple Sec</ul>
-    <ul>1.0 oz Sprite</ul>
-    <ul>1.0 oz Sour Mix</ul>
-
-    <ol>Grab a pint glass and add ingredients</ol>
-    <ol>Add ice and shake</ol>
-    <ol>Grab a shot glass and strain shot</ol>
-
-    <h3>Screaming Nazi</h3>
-
-    <ul>1.0 oz Jagermeister</ul>
-    <ul>1.0 oz Rumpleminze</ul>
-
-    <ol>Grab a pint glass and add ingredients</ol>
-    <ol>Add ice and shake</ol>
-    <ol>Grab a shot glass and strain shot</ol>
-
-    <h3>Gatorade</h3>
-
-    <ul>1.5 oz Blueberry Vodka</ul>
-    <ul>0.75 oz Sour Mix</ul>
-    <ul>0.75 oz Lemonade</ul>
-    <ul>0.5 oz Blue Curacao</ul>
-
-    <ol>Grab a pint glass and add ingredients</ol>
-    <ol>Add ice and shake</ol>
-    <ol>Grab a shot glass and strain shot</ol>
-
-    <h3>Buttery Nipple</h3>
-
-    <ul>1.0 oz Butterscotch Schnapps</ul>
-    <ul>0.5 oz Irish Cream</ul>
-
-    <ol>Grab a shot glass and pour Butterscotch Schnapps</ol>
-    <ol>Gently pour Irish Cream on top</ol>
-
-    <h3>Pornstar</h3>
-
-    <ul>1.0 oz Raspberry Liqueur</ul>
-    <ul>1.0 oz Blue Curacao</ul>
-
-    <ol>Grab a pint glass and add ingredients</ol>
-    <ol>Add ice and shake</ol>
-    <ol>Grab a shot glass and strain shot</ol>
+<style>
+    .content-box {
+        background: var(--color-background);
+        border: 2px solid var(--color-background);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin: 2rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .content-details {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+    .content-info {
+        flex: 2;
+    }
+    .content-image {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 120px;
+        min-height: 120px;
+        background: var(--color-background);
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+</style>
