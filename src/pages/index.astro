@@ -15,19 +15,16 @@ import ShotsSection from "@components/ShotsSection.astro";
     <div class="hero-image-container">
       <img src="src/assets/images/header.jpeg" alt="Group of drinks" />
       <div class="hero-overlay">
-        <h1 class="hero-title">Bartender's Glossary</h1>
+        <h1 class="hero-title">BARTENDER'S GLOSSARY</h1>
         <p class="hero-subtitle">
-          Your go-to guide for cocktails, shots, and bar tools
-        </p>
+          SHAKE, STIR, AND SERVE</p>
+          <p class="hero-subtitle2">like a pro</p>
         <div class="nav-buttons-container">
           <button class="nav-btn" onclick="location.href='#cocktails'"
-            >Cocktails</button
-          >
-          <button class="nav-btn" onclick="location.href='#shots'">Shots</button
-          >
-          <button class="nav-btn" onclick="location.href='#tools'">Tools</button
-          >
-        </div>
+            >Cocktails</button>
+          <button class="nav-btn" onclick="location.href='#shots'">Shots</button>
+          <button class="nav-btn" onclick="location.href='#tools'">Tools</button>
+      </div>
       </div>
     </div>
   </header>
@@ -35,7 +32,9 @@ import ShotsSection from "@components/ShotsSection.astro";
     <div
       style="z-index:0; position:relative; margin-bottom:0; padding-bottom:0;"
     >
-      <CocktailsSection />
+        <div style="display: flex; justify-content: flex-end; z-index:0; position:relative; margin-bottom:-3rem; padding-bottom:0;">
+          <CocktailsSection />
+        </div>
     </div>
     <div class="hand-png-container">
       <img
@@ -49,7 +48,11 @@ import ShotsSection from "@components/ShotsSection.astro";
         <ShotsSection />
       </div>
     </div>
-    <ToolSection />
+    <div style="position: relative;">
+      <ToolSection />
+      <img src="src/assets/images/3.png" alt="Decorative" class="tools-bleed-img" />
+      <img src="src/assets/images/2.png" alt="Decorative" class="tools-bleed-img-right" />
+    </div>
     <footer class="site-footer">
       <div
         class="footer-content-box"
@@ -105,7 +108,7 @@ import ShotsSection from "@components/ShotsSection.astro";
   }
   .hero-title {
     color: var(--color-background, #fff);
-    font-size: 2.5rem;
+    font-size: 1.0vw;
     font-family: var(--font-heading);
     font-weight: bold;
     margin-bottom: 1.2rem;
@@ -130,7 +133,7 @@ import ShotsSection from "@components/ShotsSection.astro";
     display: flex;
     justify-content: center;
     gap: 2rem;
-    margin-top: 10vw;
+    margin-top: 15vw;
     margin-bottom: 0rem;
     pointer-events: auto;
     z-index: 3;
@@ -144,7 +147,7 @@ import ShotsSection from "@components/ShotsSection.astro";
     height: auto;
     object-fit: contain;
     display: block;
-    margin-top: -18rem;
+    margin-top: 0;
     margin-bottom: 0;
     margin-right: 0;
     margin-left: auto;
@@ -216,16 +219,83 @@ import ShotsSection from "@components/ShotsSection.astro";
     color: var(--color-text);
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     margin: 0;
-    font-size: 4vw;
-    letter-spacing: 2px;
-    font-family: var(--font-heading);
+    margin-top: -4vw;
+    font-size: 1.5vw;
+    letter-spacing: 0.5px;
+    font-family: var(--font-body);
     background: rgba(0, 0, 0, 0.15);
     padding: 0.5rem 2rem;
     border-radius: 1rem;
   }
+  .hero-image-container p.hero-subtitle {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-focus-ring);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    margin: 0px;
+    margin-bottom: 1vw;
+    font-size: 3.5vw;
+    font-family: var(--font-heading);
+    font-weight: bold;
+    padding: 0.25rem 1rem;
+    pointer-events: none;
+    z-index: 3;
+    white-space: nowrap;
+  }
+
+    .hero-image-container p.hero-subtitle2 {
+    position: absolute;
+    top: 17%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #e2e2e1;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    margin: 0px;
+    margin-bottom: 1vw;
+    font-size: 3.5vw;
+    font-family: var(--font-special);
+    font-weight: bold;
+    padding: 0.25rem 1rem;
+    letter-spacing: 1px;
+    pointer-events: none;
+    z-index: 3;
+    white-space: nowrap;
+  }
 
   .image-container img:hover {
     filter: brightness(1) contrast(1.1) saturate(1.2);
+  }
+
+  .nav-btn {
+  min-width: 160px;
+  min-height: 56px;
+  padding: 1rem 1.5rem;
+  margin: 0;
+  margin-top: 25px;
+  border-radius: 2.5rem;
+  font-size: 1.5rem;
+  background: var(--color-text);
+  color: var(--color-background);
+  border: none;
+  font-family: var(--font-heading);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.1s;
+}
+  .nav-btn:hover,
+  .nav-btn:focus {
+    background: var(--color-focus-ring);
+    color: var(--color-background);
+    outline: none;
   }
 
   .hand-png-container {
@@ -250,7 +320,7 @@ import ShotsSection from "@components/ShotsSection.astro";
     height: auto;
     object-fit: contain;
     display: block;
-    margin-top: -18rem;
+      margin-top: -58rem;
     margin-bottom: 0;
     margin-right: 0;
     margin-left: auto;
@@ -261,27 +331,44 @@ import ShotsSection from "@components/ShotsSection.astro";
     padding: 0;
   }
 
+  .3-png {
+    position: relative;
+    z-index: -50;
+    width: 50vw;
+    max-width: 600px;
+    min-width: 120px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin-top: -58rem;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: auto;
+    box-shadow: none;
+    filter: none;
+    background: transparent;
+    padding: 0;
+    pointer-events: none;
+  }
+
+    .shots-background-content-box {
+    position: relative;
+    background: var(--color-accent);
+    padding: 1.5vw;
+    margin: 2vw 0;
+    z-index: 0;
+    min-height: 300px;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  
   .site-footer {
     width: 100%;
     background: transparent;
     color: var(--color-text);
-    padding: 2rem 0 1rem 0;
     text-align: center;
     font-family: var(--font-body);
     margin-top: 3rem;
-  }
-  .footer-content-box {
-    background: var(--color-accent);
-    color: var(--color-background);
-    width: 100vw;
-    margin: 0;
-    border-radius: 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    padding: 2rem 0 1rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
   }
   .footer-nav {
     font-size: 1.1rem;
@@ -290,10 +377,11 @@ import ShotsSection from "@components/ShotsSection.astro";
     gap: 0.5rem;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
   }
   .footer-link {
     color: var(--color-background);
-    text-decoration: underline;
+    text-decoration: none;
     font-weight: bold;
     font-family: var(--font-heading);
     margin: 0 0.5rem;
@@ -306,8 +394,8 @@ import ShotsSection from "@components/ShotsSection.astro";
   }
   .footer-link:focus,
   .footer-link:hover {
-    background: var(--color-focus-ring);
-    color: var(--color-text);
+    background: var(--color-text);
+    color: var(--color-background);
     text-decoration: none;
   }
   .footer-title {
@@ -322,38 +410,34 @@ import ShotsSection from "@components/ShotsSection.astro";
     color: var(--color-background);
     opacity: 0.8;
   }
-
-  .nav-btn {
-    background: var(--color-text);
-    color: var(--color-background);
-    border: none;
-    border-radius: 0.75rem;
-    padding: 0.75rem 1.5rem;
-    font-size: 2vw;
-    font-family: var(--font-heading);
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition:
-      background 0.2s,
-      color 0.2s,
-      transform 0.1s;
-  }
-  .nav-btn:hover,
-  .nav-btn:focus {
-    background: var(--color-focus-ring);
-    color: var(--color-background);
-    outline: none;
-  }
-  .shots-background-content-box {
-    position: relative;
-    background: var(--color-accent);
-    padding: 1.5vw;
-    margin: 2vw 0;
-    z-index: 0;
-    min-height: 300px;
-    width: 100%;
+    .footer-content-box {
+    background: var(--color-accent, #728394);
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 2rem 1rem;
+    margin: 2rem auto 0 auto;
+    width: 100%;
+    color: var(--color-background);
   }
-  
+  .tools-bleed-img {
+    position: absolute;
+    left: 0;
+    bottom: -2vw;
+    width: 30vw;
+    max-width: 600px;
+    min-width: 120px;
+    z-index: 0;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.10));
+  }
+  .tools-bleed-img-right {
+    position: absolute;
+    right: 0;
+    bottom: 12vw;
+    width: 40vw;
+    max-width: 600px;
+    min-width: 120px;
+    z-index: 0;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.10));
+  }
 </style>
