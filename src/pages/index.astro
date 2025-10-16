@@ -4,55 +4,165 @@ import SampleComponent from "@components/SampleComponent.astro";
 import Container from "@components/Container.astro";
 import { Content as SampleMarkdown } from "@content/sample-markdown.md";
 import { Image } from "astro:assets";
-import TwoColumns from "@components/TwoColumns.astro"
-import ToolSection from "@components/ToolSection.astro" 
-import CocktailsSection from "@components/CocktailsSection.astro"
-import ShotsSection from "@components/ShotsSection.astro"
+import TwoColumns from "@components/TwoColumns.astro";
+import ToolSection from "@components/ToolSection.astro";
+import CocktailsSection from "@components/CocktailsSection.astro";
+import ShotsSection from "@components/ShotsSection.astro";
 ---
 
 <Layout title="Astro Starter">
-<nav style="width: 100%; background: var(--color-text); color: #fff; padding: 1rem 0; font-family: var(--font-heading);">
-  <ul style="display: flex; justify-content: center; list-style: none; margin: 0; padding: 0;">
-    <li style="margin: 0 2rem;"><a href="#cocktails" class="navbar-link">Cocktails</a></li>
-    <li style="margin: 0 2rem;"><a href="#shots" class="navbar-link">Shots</a></li>
-    <li style="margin: 0 2rem;"><a href="#tools" class="navbar-link">Tools</a></li>
-  </ul>
-</nav>
-<!-- main content here -->
- <header> 
-  <div class="hero-image-container">
-  <img src="src/assets/images/header.jpeg" alt="Group of drinks" />
-  <h1>Bartender's Glossary</h1>
-</div>
-</header>
-<CocktailsSection/>
-  <div class="hand-png-container">
-  <img src="src/assets/images/holding.png" alt="Someone holding a cocktail" />
-</div>
-<ShotsSection/>
-<ToolSection/>
-<footer class="site-footer">
-  <div class="footer-content-box" role="contentinfo" aria-label="Site footnote and navigation">
-    <nav class="footer-nav" aria-label="Footer navigation">
-      <a href="#cocktails" class="footer-link" tabindex="0">Cocktails</a>
-      <span aria-hidden="true">|</span>
-      <a href="#shots" class="footer-link" tabindex="0">Shots</a>
-      <span aria-hidden="true">|</span>
-      <a href="#tools" class="footer-link" tabindex="0">Tools</a>
-    </nav>
-    <div class="footer-title">Bartender's Glossary</div>
-    <div class="footer-meta">&copy; 2025 Bartender's Glossary. All rights reserved.</div>
-  </div>
-</footer>
+  <header>
+    <div class="hero-image-container">
+      <img src="src/assets/images/header.jpeg" alt="Group of drinks" />
+      <div class="hero-overlay">
+        <h1 class="hero-title">Bartender's Glossary</h1>
+        <p class="hero-subtitle">
+          Your go-to guide for cocktails, shots, and bar tools
+        </p>
+        <div class="nav-buttons-container">
+          <button class="nav-btn" onclick="location.href='#cocktails'"
+            >Cocktails</button
+          >
+          <button class="nav-btn" onclick="location.href='#shots'">Shots</button
+          >
+          <button class="nav-btn" onclick="location.href='#tools'">Tools</button
+          >
+        </div>
+      </div>
+    </div>
+  </header>
+  <body>
+    <div
+      style="z-index:0; position:relative; margin-bottom:0; padding-bottom:0;"
+    >
+      <CocktailsSection />
+    </div>
+    <div class="hand-png-container">
+      <img
+        class="hand-png"
+        src="src/assets/images/holding.png"
+        alt="Someone holding a cocktail"
+      />
+    </div>
+    <div class="shots-background-content-box">
+      <div id="shots-section">
+        <ShotsSection />
+      </div>
+    </div>
+    <ToolSection />
+    <footer class="site-footer">
+      <div
+        class="footer-content-box"
+        role="contentinfo"
+        aria-label="Site footnote and navigation"
+      >
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#cocktails" class="footer-link" tabindex="0">Cocktails</a>
+          <span aria-hidden="true">|</span>
+          <a href="#shots" class="footer-link" tabindex="0">Shots</a>
+          <span aria-hidden="true">|</span>
+          <a href="#tools" class="footer-link" tabindex="0">Tools</a>
+        </nav>
+        <div class="footer-title">Bartender's Glossary</div>
+        <div class="footer-meta">
+          &copy; 2025 Bartender's Glossary. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
 </Layout>
 
 <style>
+  .hero-image-container {
+    position: relative;
+    width: 100vw;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+  }
+  .hero-image-container img {
+    width: 100vw;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+  }
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .hero-title {
+    color: var(--color-background, #fff);
+    font-size: 2.5rem;
+    font-family: var(--font-heading);
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    padding: 0.25rem 1.5rem;
+    white-space: nowrap;
+    pointer-events: auto;
+    z-index: 3;
+  }
+  .hero-subtitle {
+    color: var(--color-focus-ring);
+    font-size: 1.2rem;
+    font-family: var(--font-body);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    padding: 0.25rem 1rem;
+    pointer-events: auto;
+    z-index: 3;
+  }
+  .nav-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 10vw;
+    margin-bottom: 0rem;
+    pointer-events: auto;
+    z-index: 3;
+  }
+  .hand-png {
+    position: absolute;
+    z-index: -10;
+    width: 50vw;
+    max-width: 600px;
+    min-width: 120px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin-top: -18rem;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: auto;
+    box-shadow: none;
+    filter: none;
+    background: transparent;
+    padding: 0;
+    pointer-events: none;
+  }
+
   .navbar-link {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
     font-family: var(--font-heading);
-    transition: background 0.2s, color 0.2s;
+    transition:
+      background 0.2s,
+      color 0.2s;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     display: inline-block;
@@ -61,114 +171,94 @@ import ShotsSection from "@components/ShotsSection.astro"
     background: var(--color-focus-ring);
     color: #fff;
   }
-img {
-  width: 100vw;
-  height: 500px;
-  object-fit: cover;
-  display: block;
-  z-index: 1;
-}
 
-header {
-  position: relative;
-  text-align: center;
-  z-index: 3;
-}
-
-.hero-image-container {
-  position: relative;
-  width: 100vw;
-  max-width: 100%;
-  height: 70%;
-  overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-background) 100%);
-}
-.hero-image-container img {
-  width: 100vw;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: brightness(0.95) contrast(1.05) saturate(1.1);
-  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
-  transition: filter 0.3s;
-}
-.hero-image-container h1 {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--color-background);
-  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  margin: 0;
-  font-size: 3rem;
-  letter-spacing: 2px;
-  font-family: var(--font-heading);
-  background: rgba(0,0,0,0.15);
-  padding: 0.5rem 2rem;
-  border-radius: 1rem;
-
-}
-
-.image-container img:hover {
-  filter: brightness(1) contrast(1.1) saturate(1.2);
-}
-
-.hand-png-container {
-  width: 50%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
-}
-
-.png-right {
-      background: transparent;
-      width: 40vw;
-      max-width: 400px;
-      min-width: 120px;
-      height: auto;
-      object-fit: contain;
-      display: block;
-      float: right;
-      margin-right: 0;
-      margin-left: auto;
-      box-shadow: none;
-      filter: none;
-}
-
-  h1 {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    font-weight: bold;
-    margin: 0;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-size: 3rem;
+  img {
+    width: 100vw;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+    z-index: 1;
   }
-   h2 {
+
+  header {
+    position: relative;
     text-align: center;
-    color: var(--color-primary);
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-   }
-
-  h3 {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    letter-spacing: 1px;
-    font-size: 1.5rem;
+    z-index: 3;
   }
 
-  ol, ul {
-    margin-left: 1.5rem;
-    margin-bottom: 0.5rem;
-    list-style-position: inside;
+  .hero-image-container {
+    position: relative;
+    width: 100vw;
+    max-width: 100%;
+    height: 70%;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(
+      90deg,
+      var(--color-accent) 0%,
+      var(--color-background) 100%
+    );
+  }
+  .hero-image-container img {
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.95) contrast(1.05) saturate(1.1);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+    transition: filter 0.3s;
+  }
+  .hero-image-container h1 {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: var(--color-text);
-    font-size: 1rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    font-size: 4vw;
+    letter-spacing: 2px;
+    font-family: var(--font-heading);
+    background: rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 2rem;
+    border-radius: 1rem;
+  }
+
+  .image-container img:hover {
+    filter: brightness(1) contrast(1.1) saturate(1.2);
+  }
+
+  .hand-png-container {
+    width: auto;
+    display: block;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    background: transparent;
+    transform: scaleX(-1);
+    z-index: -1000;
+    position: relative;
+  }
+
+  .hand-png {
+    background: transparent;
+    width: 50vw;
+    max-width: 600px;
+    min-width: 120px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin-top: -18rem;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: auto;
+    box-shadow: none;
+    filter: none;
+    z-index: -10;
+    position: relative;
+    padding: 0;
   }
 
   .site-footer {
@@ -186,7 +276,7 @@ header {
     width: 100vw;
     margin: 0;
     border-radius: 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     padding: 2rem 0 1rem 0;
     display: flex;
     flex-direction: column;
@@ -210,9 +300,12 @@ header {
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
     outline: none;
-    transition: background 0.2s, color 0.2s;
+    transition:
+      background 0.2s,
+      color 0.2s;
   }
-  .footer-link:focus, .footer-link:hover {
+  .footer-link:focus,
+  .footer-link:hover {
     background: var(--color-focus-ring);
     color: var(--color-text);
     text-decoration: none;
@@ -229,4 +322,38 @@ header {
     color: var(--color-background);
     opacity: 0.8;
   }
+
+  .nav-btn {
+    background: var(--color-text);
+    color: var(--color-background);
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 2vw;
+    font-family: var(--font-heading);
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition:
+      background 0.2s,
+      color 0.2s,
+      transform 0.1s;
+  }
+  .nav-btn:hover,
+  .nav-btn:focus {
+    background: var(--color-focus-ring);
+    color: var(--color-background);
+    outline: none;
+  }
+  .shots-background-content-box {
+    position: relative;
+    background: var(--color-accent);
+    padding: 1.5vw;
+    margin: 2vw 0;
+    z-index: 0;
+    min-height: 300px;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  
 </style>
