@@ -237,9 +237,15 @@ import TwoColumns from "@components/TwoColumns.astro"
     </div>
   </div>
   </div>
+  <div class="cocktails-scroll-controls" role="group" aria-label="Scroll cocktails">
+    <button id="cocktailsLeftBtn" type="button" class="cocktails-scroll-btn" aria-label="Scroll left">‹</button>
+    <button id="cocktailsRightBtn" type="button" class="cocktails-scroll-btn" aria-label="Scroll right">›</button>
+  </div>
+  
 <style>
     .cocktails-horizontal-scroll {
       overflow-x: auto;
+      overflow-y: visible;
       width: 60vw;
       height: 160vh;
       padding-bottom: 2rem;
@@ -257,6 +263,30 @@ import TwoColumns from "@components/TwoColumns.astro"
     height: 100%;
       padding-top: 7rem;
   }
+  .cocktails-scroll-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 1200;
+    pointer-events: auto !important;
+  }
+  .cocktails-scroll-btn {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    border: none;
+    padding: 0.8rem 1.4rem;
+    font-size: 2.6rem;
+    line-height: 1;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+    pointer-events: auto;
+    touch-action: manipulation;
+  }
+  .cocktails-scroll-btn[disabled] { opacity: 0.45; cursor: default; transform: none; box-shadow: none; }
     h2#cocktails {
     font-family: var(--font-heading);
     font-weight: bold;
@@ -274,3 +304,4 @@ import TwoColumns from "@components/TwoColumns.astro"
     z-index: 20;
   }
   </style>
+  

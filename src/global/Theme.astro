@@ -13,7 +13,7 @@ import '@fontsource/homemade-apple';
     --color-background: #1E1B19;
     --color-text: #C0B3A5;
     --color-compliment: #6D4F3E;
-    --color-accent: #728394;
+    --color-accent: #677d91;
     --color-focus-ring: #829bab;
 
     --font-heading: 'Montserrat Variable', sans-serif;
@@ -39,7 +39,7 @@ import '@fontsource/homemade-apple';
 
   h3 {
     font-family: var(--font-heading);
-    color: var(--color-accent);
+    color: var(--color-background);
     font-size: 1.75rem;
     font-weight: medium;
     text-align: center; 
@@ -69,7 +69,6 @@ body {
 body {
   font-family: 'Merriweather Variable', serif;
 }
-/* content box styling */
   .content-box {
     background: var(--color-text);
     border: 2px solid var(--color-text);
@@ -86,18 +85,24 @@ body {
     position: relative;
     right: 0;
     margin-left: auto;
-    overflow: visible;
+    /* Make sure long content stays inside the card instead of overflowing the parent
+       Use border-box so padding is included in size calculations. Allow internal scroll
+       when content exceeds max-height so long lists (e.g. Sangria) don't spill out. */
+    box-sizing: border-box;
+    overflow: auto;
   }
   .steps-box {
     background: var(--color-focus-ring);
-    padding: 0.5rem 1.0rem;
+    padding: 0.6rem 1.0rem; /* slight extra vertical padding */
     box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    /* Steps are a vertical list inside the box; keep normal block flow so the
+       ordered list can wrap and respect the container width/height. */
+    display: block;
     gap: 0.5rem;
     width: 100%;
     max-width: 100%;
+    margin-top: 0.5rem;
+    align-self: stretch;
   }
   .content-details {
     display: flex;
@@ -105,10 +110,18 @@ body {
     align-items: stretch;
     gap: 2rem;
     height: 100%;
+    /* Allow children to shrink inside a flex container instead of overflowing. */
+    min-height: 0;
     padding-top: 2rem;
   }
   .content-info {
     flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* push steps-box to bottom */
+    gap: 0.75rem;
+    /* Ensure long content inside this flex child can scroll/shrink properly. */
+    min-height: 0;
   }
   .content-image img {
     width: 100%;
@@ -137,5 +150,12 @@ body {
     justify-content: center;
     overflow: hidden;
     z-index: 2;
+  }
+  .content-image {
+    z-index: 999;
+  }
+
+  #tools-bleed-img {
+    z-index: 9999;
   }
 </style>

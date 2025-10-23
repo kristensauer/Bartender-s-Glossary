@@ -212,13 +212,19 @@ import TwoColumns from "@components/TwoColumns.astro"
     </div>
 </div>
 
-<style>
+        <div class="shots-scroll-controls" role="group" aria-label="Scroll shots">
+            <button id="shotsLeftBtn" type="button" class="shots-scroll-btn" aria-label="Scroll left">‹</button>
+            <button id="shotsRightBtn" type="button" class="shots-scroll-btn" aria-label="Scroll right">›</button>
+        </div>
+
+    <style>
     .shots-horizontal-scroll .content-image {
         top: -32px !important;
     }
     .shots-horizontal-scroll-container {
         width: 80vw;
         overflow-x: auto;
+        overflow-y: visible;
         padding: 1rem 0;
         display: flex;
         justify-content: center;
@@ -239,6 +245,32 @@ import TwoColumns from "@components/TwoColumns.astro"
         max-width: 400px;
         padding: 6.0rem 1.5rem 1.5rem 1.5rem;
     }
+    .shots-scroll-controls {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        position: relative;
+        z-index: 1200;
+        pointer-events: auto !important;
+    }
+    .shots-scroll-btn {
+        background: var(--color-background);
+        color: var(--color-accent);
+        border: none;
+        padding: 0.8rem 1.4rem;
+        font-size: 2.6rem;
+        line-height: 1;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+        pointer-events: auto;
+        touch-action: manipulation;
+    }
+    .shots-scroll-btn:active { transform: translateY(1px); box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+    .shots-scroll-btn[disabled] { opacity: 0.45; cursor: default; transform: none; box-shadow: none; }
+    @media (max-width: 700px) { .shots-scroll-btn { font-size: 1.8rem; padding: 0.45rem 0.9rem; } }
         h2.vertical-h2 {
                 font-family: var(--font-heading);
                 font-size: 8rem;
@@ -256,3 +288,99 @@ import TwoColumns from "@components/TwoColumns.astro"
         }
         
     </style>
+
+    <script type="module">
+        (function(){
+            const viewport = document.querySelector('.shots-horizontal-scroll-container');
+            if (!viewport) return;
+            const track = viewport.querySelector('.shots-horizontal-scroll');
+            const leftBtn = document.getElementById('shotsLeftBtn');
+            const rightBtn = document.getElementById('shotsRightBtn');
+            if (!track || !leftBtn || !rightBtn) return;
+
+            try { console.debug('shots:init', { viewportClientW: viewport.clientWidth, viewportScrollW: viewport.scrollWidth }); } catch(e){}
+
+            function getScrollAmount(){
+                const item = track.querySelector('.content-box');
+                if (!item) return Math.max(viewport.clientWidth, 300);
+                const itemWidth = item.getBoundingClientRect().width;
+                const style = getComputedStyle(track);
+                const gapStr = style.gap || style.columnGap || '0px';
+                const gap = parseFloat(gapStr) || 0;
+                return Math.round(itemWidth + gap);
+            }
+
+            function updateButtons(){
+                const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+                const threshold = 6;
+                const hasScroll = maxScroll > threshold;
+                try { console.debug('shots:updateButtons', { maxScroll, scrollLeft: viewport.scrollLeft, hasScroll }); } catch(e){}
+                leftBtn.disabled = hasScroll ? (viewport.scrollLeft <= threshold) : false;
+                rightBtn.disabled = hasScroll ? (viewport.scrollLeft >= (maxScroll - threshold)) : false;
+            }
+
+            function doScroll(delta){
+                // Primary: find the currently centered item and scroll the next/previous into view.
+                const items = Array.from(track.querySelectorAll('.content-box'));
+                if (items.length){
+                    const viewportRect = viewport.getBoundingClientRect();
+                    const viewportCenter = viewportRect.left + viewportRect.width / 2;
+                    // find index of the item whose center is closest to viewport center
+                    let closestIdx = 0;
+                    let closestDist = Infinity;
+                    items.forEach((it, i) => {
+                        const r = it.getBoundingClientRect();
+                        const center = r.left + r.width / 2;
+                        const dist = Math.abs(center - viewportCenter);
+                        if (dist < closestDist) { closestDist = dist; closestIdx = i; }
+                    });
+                    const targetIdx = Math.max(0, Math.min(items.length - 1, closestIdx + delta));
+                    try { console.debug('shots: scroll to index', { closestIdx, targetIdx }); } catch(e){}
+                    // scroll the target item into center of the scroll container
+                    try {
+                        items[targetIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        return;
+                    } catch (e) {
+                        try { console.debug('shots: scrollIntoView failed, falling back', e); } catch(e){}
+                    }
+                }
+
+                // Fallback: use pixel-based scroll
+                const amt = getScrollAmount();
+                const scrollTarget = delta * amt;
+                try { console.debug('shots: fallback scroll by', scrollTarget); } catch(e){}
+                if (typeof viewport.scrollBy === 'function') {
+                    viewport.scrollBy({ left: scrollTarget, behavior: 'smooth' });
+                } else {
+                    viewport.scrollLeft = Math.max(0, Math.min(viewport.scrollWidth - viewport.clientWidth, viewport.scrollLeft + scrollTarget));
+                }
+            }
+
+            leftBtn.addEventListener('click', function leftHandler(e){
+                try { console.debug('shots:left click', e.target); } catch(e){}
+                const r = leftBtn.getBoundingClientRect();
+                try { console.debug('elementFromPoint at left center', document.elementFromPoint(r.left + r.width/2, r.top + r.height/2)); } catch(e){}
+                doScroll(-1);
+            }, { capture: true });
+            rightBtn.addEventListener('click', function rightHandler(e){
+                try { console.debug('shots:right click', e.target); } catch(e){}
+                const r = rightBtn.getBoundingClientRect();
+                try { console.debug('elementFromPoint at right center', document.elementFromPoint(r.left + r.width/2, r.top + r.height/2)); } catch(e){}
+                doScroll(1);
+            }, { capture: true });
+
+            leftBtn.addEventListener('pointerdown', ()=> doScroll(-1), { passive: true });
+            rightBtn.addEventListener('pointerdown', ()=> doScroll(1), { passive: true });
+
+            document.addEventListener('click', function delegated(e){
+                const target = e.target;
+                if (!target) return;
+                if (target.id === 'shotsLeftBtn') { doScroll(-1); }
+                if (target.id === 'shotsRightBtn') { doScroll(1); }
+            });
+
+            viewport.addEventListener('scroll', updateButtons, { passive: true });
+            window.addEventListener('resize', updateButtons);
+            setTimeout(updateButtons, 150);
+        })();
+    </script>
