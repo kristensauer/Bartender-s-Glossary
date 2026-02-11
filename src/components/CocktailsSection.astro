@@ -243,6 +243,43 @@ import TwoColumns from "@components/TwoColumns.astro"
   </div>
   
 <style>
+
+.cocktails-horizontal-scroll .content-info,
+.shots-horizontal-scroll .content-info {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem 1.5rem;
+  align-items: start;
+}
+
+.cocktails-horizontal-scroll .content-info > h3,
+.shots-horizontal-scroll .content-info > h3 {
+  grid-column: 1 / -1;
+}
+
+.cocktails-horizontal-scroll .content-info > ul,
+.shots-horizontal-scroll .content-info > ul {
+  grid-column: 1;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.cocktails-horizontal-scroll .content-info > .steps-box,
+.shots-horizontal-scroll .content-info > .steps-box {
+  grid-column: 2;
+}
+
+@media (max-width: 900px) {
+  .cocktails-horizontal-scroll .content-info,
+  .shots-horizontal-scroll .content-info {
+    grid-template-columns: 1fr;
+  }
+
+  .cocktails-horizontal-scroll .content-info > .steps-box,
+  .shots-horizontal-scroll .content-info > .steps-box {
+    grid-column: 1;
+  }
+}
     .cocktails-horizontal-scroll {
       overflow-x: auto;
       overflow-y: visible;

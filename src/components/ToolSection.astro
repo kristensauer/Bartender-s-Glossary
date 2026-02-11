@@ -170,26 +170,25 @@ import TwoColumns from "@components/TwoColumns.astro"
                             max-width: var(--tool-box-w);
                             padding: 7.0rem 1.5rem 1.5rem 1.5rem;
                             box-sizing: border-box;
-                            text-align: center;
+                            text-align: left;
                         }
-                        .tools-horizontal-scroll .content-box {
-                            position: relative;
-                            overflow: visible;
-                        }
+                         .tools-horizontal-scroll .content-box {
+                         scroll-snap-align: center;
+                        min-width: 340px;
+                        max-width: 400px;
+                        padding: 6.0rem 1.5rem 1.5rem 1.5rem;
+                        min-height: 520px;
+                        max-height: 720px;
+    }
                         .tools-horizontal-scroll .content-image {
                             position: absolute;
-                            top: -40px;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            width: 150px;
-                            height: 150px;
-                            border-radius: 50%;
-                            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
+                            inset: 0;
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 0;
+                            box-shadow: none;
                             overflow: hidden;
-                            z-index: 9999;
+                            z-index: 0;
                         }
                         .tools-horizontal-scroll .content-image img {
                             width: 100%;
@@ -197,7 +196,7 @@ import TwoColumns from "@components/TwoColumns.astro"
                             object-fit: cover;
                             object-position: center;
                             display: block;
-                            border-radius: 50%;
+                            border-radius: 0;
                         }
                         .tools-scroll-controls {
                             display: flex;

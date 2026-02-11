@@ -40,19 +40,21 @@ import '@fontsource/homemade-apple';
   h3 {
     font-family: var(--font-heading);
     color: var(--color-background);
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: medium;
-    text-align: center; 
+    text-align: left; 
   }
-h4, h5, h6, p, {
+h4, h5, h6, p {
   font-family: var(--font-body);
-  color: var(--color-accent);
-  font-size: 1.5rem;
+  color: var(--color-text);
+  font-size: 1.0rem;
+  padding: 0.25rem 0;
 }
 ol, ul, li {
   font-family: var(--font-body);
-  color: var(--color-background);
-  font-size: 1rem;
+  color: var(--color-text);
+  font-size: 1.0rem;
+  padding: 0.1rem 0;
 }
   *:focus-visible {
     outline: 3px solid var(--color-accent);
@@ -71,8 +73,8 @@ body {
 }
   .content-box {
     background: var(--color-text);
-    border: 2px solid var(--color-text);
     padding: 4rem 1.5rem 3.5rem 1.5rem;
+    border-radius: 35px;
     margin: 2rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     min-height: 300px;
@@ -89,74 +91,90 @@ body {
        Use border-box so padding is included in size calculations. Allow internal scroll
        when content exceeds max-height so long lists (e.g. Sangria) don't spill out. */
     box-sizing: border-box;
-    overflow: auto;
+    overflow: hidden;
   }
-  .steps-box {
-    background: var(--color-accent);
-    padding: 0.6rem 1.0rem; /* slight extra vertical padding */
-    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-    /* Steps are a vertical list inside the box; keep normal block flow so the
-       ordered list can wrap and respect the container width/height. */
-    display: block;
-    gap: 0.5rem;
-    width: 100%;
-    max-width: 100%;
-    margin-top: 0.5rem;
-    align-self: stretch;
-  }
-  .steps-box li {
+
+  .content-box h3, li, ul, li {
     color: var(--color-text);
+    padding: 0.1rem;
   }
-  .content-details {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    gap: 2rem;
-    height: 100%;
-    /* Allow children to shrink inside a flex container instead of overflowing. */
-    min-height: 0;
-    padding-top: 2rem;
-  }
-  .content-info {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* push steps-box to bottom */
-    gap: 0.75rem;
-    /* Ensure long content inside this flex child can scroll/shrink properly. */
-    min-height: 0;
-  }
-  .content-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    border-radius: 50%;
-    max-width: 150px;
-    max-height: 150px;
-    overflow: hidden;
-  }
-    .content-image {
-    position: absolute;
-    top: -80px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 150px;
-    max-width: 150px;
-    max-height: 150px;
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    z-index: 2;
-  }
-  .content-image {
-    z-index: 999;
-  }
+
+.content-details {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-image {
+  position: absolute;
+  inset: 0;
+  width: 120%;
+  height: 120%;
+  border-radius: 0; /* remove circle */
+  z-index: 0;
+  overflow: hidden;
+}
+
+.content-image::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  top: 40%;
+  bottom: 0%;
+  backdrop-filter: blur(8px);
+  background: linear-gradient(
+    to top,
+    rgba(3, 5, 7, 0.39) 0%,
+    rgba(3, 5, 7, 0.38) 15%,
+    rgba(3, 5, 7, 0.14) 65%,
+    rgba(3, 5, 7, 0.04) 85%,
+    rgba(3, 5, 7, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.tools-horizontal-scroll .content-image::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  top: 75%;
+  bottom: 0%;
+  backdrop-filter: blur(8px);
+  background: linear-gradient(
+    to top,
+    rgba(3, 5, 7, 0.39) 0%,
+    rgba(3, 5, 7, 0.38) 15%,
+    rgba(3, 5, 7, 0.14) 65%,
+    rgba(3, 5, 7, 0.04) 85%,
+    rgba(3, 5, 7, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.content-info {
+  position: relative;
+  z-index: 3;
+  margin-top: 16rem;
+  padding: 1.5rem;
+  padding-inline: 2rem;
+  margin-top: auto;
+}
+
+.content-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
 
   #tools-bleed-img {
     z-index: 9999;
