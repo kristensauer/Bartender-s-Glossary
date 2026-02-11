@@ -137,7 +137,7 @@ import TwoColumns from "@components/TwoColumns.astro"
                         .tools-section-title {
                             font-family: var(--font-heading);
                             font-size: 8rem;
-                            color: var(--color-accent);
+                            color: var(--color-text);
                             text-align: center;
                             margin: 2rem 0 1rem 0;
                             letter-spacing: 0.05em;
@@ -209,7 +209,7 @@ import TwoColumns from "@components/TwoColumns.astro"
                             pointer-events: auto !important;
                         }
                         .tools-scroll-btn {
-                            background: var(--color-accent);
+                            background: var(--color-secondary);
                             color: var(--color-on-accent);
                             border: none;
                             padding: 0.8rem 1.4rem;
@@ -227,7 +227,9 @@ import TwoColumns from "@components/TwoColumns.astro"
                             box-shadow: 0 1px 4px rgba(0,0,0,0.08);
                         }
                         @media (max-width: 700px) {
-                            .tools-scroll-btn { font-size: 1.5rem; padding: 0.4rem 0.8rem; }
+                            .tools-scroll-btn { 
+                                font-size: 1.5rem; 
+                                padding: 0.4rem 0.8rem; }
                         }
                         .tools-scroll-btn[disabled] {
                             opacity: 0.45;

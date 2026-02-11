@@ -273,7 +273,7 @@ import TwoColumns from "@components/TwoColumns.astro"
     pointer-events: auto !important;
   }
   .cocktails-scroll-btn {
-    background: var(--color-accent);
+    background: var(--color-secondary);
     color: var(--color-on-accent);
     border: none;
     padding: 0.8rem 1.4rem;
@@ -286,18 +286,23 @@ import TwoColumns from "@components/TwoColumns.astro"
     pointer-events: auto;
     touch-action: manipulation;
   }
-  .cocktails-scroll-btn[disabled] { opacity: 0.45; cursor: default; transform: none; box-shadow: none; }
+  .cocktails-scroll-btn { 
+    opacity: 0.45; 
+    cursor: default; 
+    transform: none; 
+    box-shadow: none; }
+
     h2#cocktails {
     font-family: var(--font-heading);
     font-weight: bold;
-    color: var(--color-accent);
+    color: var(--color-text);
     font-size: 8rem;
     text-align: left;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: 30;
+    margin-bottom: 30;
     position: absolute;
     left: 0;
-    top: 80vh;
+    top: 90vh;
     transform: rotate(-90deg);
     transform-origin: left top;
     white-space: nowrap;

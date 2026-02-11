@@ -10,11 +10,11 @@ import '@fontsource/homemade-apple';
 
 <style is:global>
   :root {
-    --color-background: #1E1B19;
-    --color-text: #C0B3A5;
-    --color-compliment: #6D4F3E;
-    --color-accent: #677d91;
-    --color-focus-ring: #829bab;
+    --color-background: #030507;
+    --color-text: #eef2f7;
+    --color-primary: #89a9dc;
+    --color-secondary: #204a88;
+    --color-accent: #d61919;
 
     --font-heading: 'Montserrat Variable', sans-serif;
     --font-body: 'Merriweather Variable', serif;
@@ -32,7 +32,7 @@ import '@fontsource/homemade-apple';
   
   h1 {
     font-family: var(--font-heading);
-    color: var(--color-focus-ring);
+    color: var(--color-accent);
     font-size: 1.5vw;
     text-align: center;
   }
@@ -46,7 +46,7 @@ import '@fontsource/homemade-apple';
   }
 h4, h5, h6, p, {
   font-family: var(--font-body);
-  color: var(--color-focus-ring);
+  color: var(--color-accent);
   font-size: 1.5rem;
 }
 ol, ul, li {
@@ -55,7 +55,7 @@ ol, ul, li {
   font-size: 1rem;
 }
   *:focus-visible {
-    outline: 3px solid var(--color-focus-ring);
+    outline: 3px solid var(--color-accent);
   }
 
   .hidden {
@@ -92,7 +92,7 @@ body {
     overflow: auto;
   }
   .steps-box {
-    background: var(--color-focus-ring);
+    background: var(--color-accent);
     padding: 0.6rem 1.0rem; /* slight extra vertical padding */
     box-shadow: 0 1px 4px rgba(0,0,0,0.03);
     /* Steps are a vertical list inside the box; keep normal block flow so the
@@ -103,6 +103,9 @@ body {
     max-width: 100%;
     margin-top: 0.5rem;
     align-self: stretch;
+  }
+  .steps-box li {
+    color: var(--color-text);
   }
   .content-details {
     display: flex;
