@@ -4,9 +4,8 @@ import TwoColumns from "@components/TwoColumns.astro"
 
 <h2 id="cocktails">Cocktails</h2>
 
-<div class="cocktails-scroll-arrows-container">
+<div class="cocktails-horizontal-scroll-container">
   <div class="cocktails-horizontal-scroll">
-    <div class="cocktails-row" id="cocktailsRow">
     <div class="content-box">
       <div class="content-details">
         <div class="content-info">
@@ -234,9 +233,8 @@ import TwoColumns from "@components/TwoColumns.astro"
          <img src=/images/oldfashioned.jpg alt="Old Fashioned">
         </div>
       </div>
-    </div>
   </div>
-  </div>
+</div>
   <div class="cocktails-scroll-controls" role="group" aria-label="Scroll cocktails">
     <button id="cocktailsLeftBtn" type="button" class="cocktails-scroll-btn" aria-label="Scroll left">‹</button>
     <button id="cocktailsRightBtn" type="button" class="cocktails-scroll-btn" aria-label="Scroll right">›</button>
@@ -249,12 +247,29 @@ import TwoColumns from "@components/TwoColumns.astro"
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 1rem 1.5rem;
-  align-items: start;
+  align-items: baseline;
+  position: relative;
+}
+
+.cocktails-horizontal-scroll .content-info::after,
+.shots-horizontal-scroll .content-info::after {
+  content: "";
+  position: absolute;
+  top: 4.4rem;
+  bottom: 10%;
+  left: 50%;
+  width: 2px;
+  background: var(--color-text);
+  transform: translateX(-50%);
+  pointer-events: none;
 }
 
 .cocktails-horizontal-scroll .content-info > h3,
 .shots-horizontal-scroll .content-info > h3 {
   grid-column: 1 / -1;
+  border-bottom: 2px solid var(--color-text);
+  margin: 0rem;
+  padding-bottom: 0.5rem;
 }
 
 .cocktails-horizontal-scroll .content-info > ul,
@@ -275,31 +290,45 @@ import TwoColumns from "@components/TwoColumns.astro"
     grid-template-columns: 1fr;
   }
 
+  .cocktails-horizontal-scroll .content-info::after,
+  .shots-horizontal-scroll .content-info::after {
+    display: none;
+  }
+
   .cocktails-horizontal-scroll .content-info > .steps-box,
   .shots-horizontal-scroll .content-info > .steps-box {
     grid-column: 1;
   }
 }
-    .cocktails-horizontal-scroll {
+    .cocktails-horizontal-scroll-container {
+      width: 60%;
+      max-width: 60vw;
       overflow-x: auto;
       overflow-y: visible;
-      width: 60vw;
-      height: 160vh;
-      padding-bottom: 2rem;
+      padding: 1rem 0;
       display: flex;
-      justify-content: flex-end;
-      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: 0;
+    }
+    .cocktails-horizontal-scroll {
+      display: flex;
+      flex-direction: row;
+      gap: 3rem;
+      width: max-content;
+      align-items: stretch;
       scroll-snap-type: x mandatory;
+      overflow-x: auto;
+      padding: 7rem 0 2rem;
       background: transparent;
     }
-  .cocktails-row {
-    display: flex;
-    gap: 1rem;
-    width: max-content;
-    align-items: stretch;
-    height: 100%;
-      padding-top: 7rem;
-  }
+    .cocktails-horizontal-scroll .content-box {
+      min-width: 300px;
+      max-width: 360px;
+      padding: 5.0rem 1.2rem 1.2rem 1.2rem;
+      min-height: 620px;
+      max-height: 760px;
+    }
   .cocktails-scroll-controls {
     display: flex;
     justify-content: center;
@@ -308,10 +337,14 @@ import TwoColumns from "@components/TwoColumns.astro"
     position: relative;
     z-index: 1200;
     pointer-events: auto !important;
+    width: 60%;
+    max-width: 60vw;
+    margin-left: auto;
+    margin-right: 0;
   }
   .cocktails-scroll-btn {
-    background: var(--color-secondary);
-    color: var(--color-on-accent);
+    background: var(--color-background);
+    color: var(--color-secondary);
     border: none;
     padding: 0.8rem 1.4rem;
     font-size: 2.6rem;
@@ -323,7 +356,11 @@ import TwoColumns from "@components/TwoColumns.astro"
     pointer-events: auto;
     touch-action: manipulation;
   }
-  .cocktails-scroll-btn { 
+  .cocktails-scroll-btn:active { 
+    transform: translateY(1px); 
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+
+  .cocktails-scroll-btn[disabled] { 
     opacity: 0.45; 
     cursor: default; 
     transform: none; 
@@ -339,11 +376,103 @@ import TwoColumns from "@components/TwoColumns.astro"
     margin-bottom: 30;
     position: absolute;
     left: 0;
-    top: 90vh;
+    top: 110vh;
     transform: rotate(-90deg);
     transform-origin: left top;
     white-space: nowrap;
     z-index: 20;
   }
   </style>
+
+  <script type="module">
+    (function(){
+      const viewport = document.querySelector('.cocktails-horizontal-scroll-container');
+      if (!viewport) return;
+      const track = viewport.querySelector('.cocktails-horizontal-scroll');
+      const leftBtn = document.getElementById('cocktailsLeftBtn');
+      const rightBtn = document.getElementById('cocktailsRightBtn');
+      if (!track || !leftBtn || !rightBtn) return;
+
+      try { console.debug('cocktails:init', { viewportClientW: viewport.clientWidth, viewportScrollW: viewport.scrollWidth }); } catch(e){}
+
+      function getScrollAmount(){
+        const item = track.querySelector('.content-box');
+        if (!item) return Math.max(viewport.clientWidth, 300);
+        const itemWidth = item.getBoundingClientRect().width;
+        const style = getComputedStyle(track);
+        const gapStr = style.gap || style.columnGap || '0px';
+        const gap = parseFloat(gapStr) || 0;
+        return Math.round(itemWidth + gap);
+      }
+
+      function updateButtons(){
+        const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+        const threshold = 6;
+        const hasScroll = maxScroll > threshold;
+        try { console.debug('cocktails:updateButtons', { maxScroll, scrollLeft: viewport.scrollLeft, hasScroll }); } catch(e){}
+        leftBtn.disabled = hasScroll ? (viewport.scrollLeft <= threshold) : false;
+        rightBtn.disabled = hasScroll ? (viewport.scrollLeft >= (maxScroll - threshold)) : false;
+      }
+
+      function doScroll(delta){
+        const items = Array.from(track.querySelectorAll('.content-box'));
+        if (items.length){
+          const viewportRect = viewport.getBoundingClientRect();
+          const viewportCenter = viewportRect.left + viewportRect.width / 2;
+          let closestIdx = 0;
+          let closestDist = Infinity;
+          items.forEach((it, i) => {
+            const r = it.getBoundingClientRect();
+            const center = r.left + r.width / 2;
+            const dist = Math.abs(center - viewportCenter);
+            if (dist < closestDist) { closestDist = dist; closestIdx = i; }
+          });
+          const targetIdx = Math.max(0, Math.min(items.length - 1, closestIdx + delta));
+          try { console.debug('cocktails: scroll to index', { closestIdx, targetIdx }); } catch(e){}
+          try {
+            items[targetIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            return;
+          } catch (e) {
+            try { console.debug('cocktails: scrollIntoView failed, falling back', e); } catch(e){}
+          }
+        }
+
+        const amt = getScrollAmount();
+        const scrollTarget = delta * amt;
+        try { console.debug('cocktails: fallback scroll by', scrollTarget); } catch(e){}
+        if (typeof viewport.scrollBy === 'function') {
+          viewport.scrollBy({ left: scrollTarget, behavior: 'smooth' });
+        } else {
+          viewport.scrollLeft = Math.max(0, Math.min(viewport.scrollWidth - viewport.clientWidth, viewport.scrollLeft + scrollTarget));
+        }
+      }
+
+      leftBtn.addEventListener('click', function leftHandler(e){
+        try { console.debug('cocktails:left click', e.target); } catch(e){}
+        const r = leftBtn.getBoundingClientRect();
+        try { console.debug('elementFromPoint at left center', document.elementFromPoint(r.left + r.width/2, r.top + r.height/2)); } catch(e){}
+        doScroll(-1);
+      }, { capture: true });
+      rightBtn.addEventListener('click', function rightHandler(e){
+        try { console.debug('cocktails:right click', e.target); } catch(e){}
+        const r = rightBtn.getBoundingClientRect();
+        try { console.debug('elementFromPoint at right center', document.elementFromPoint(r.left + r.width/2, r.top + r.height/2)); } catch(e){}
+        doScroll(1);
+      }, { capture: true });
+
+      leftBtn.addEventListener('pointerdown', ()=> doScroll(-1), { passive: true });
+      rightBtn.addEventListener('pointerdown', ()=> doScroll(1), { passive: true });
+
+      document.addEventListener('click', function delegated(e){
+        const target = e.target;
+        if (!target) return;
+        if (target.id === 'cocktailsLeftBtn') { doScroll(-1); }
+        if (target.id === 'cocktailsRightBtn') { doScroll(1); }
+      });
+
+      viewport.addEventListener('scroll', updateButtons, { passive: true });
+      window.addEventListener('resize', updateButtons);
+      setTimeout(updateButtons, 150);
+    })();
+  </script>
   
