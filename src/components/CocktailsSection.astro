@@ -4,9 +4,10 @@ import TwoColumns from "@components/TwoColumns.astro"
 
 <h2 id="cocktails">Cocktails</h2>
 
-<div class="cocktails-horizontal-scroll-container">
-  <div class="cocktails-horizontal-scroll">
-    <div class="content-box">
+<div class="cocktails-scroll-wrapper">
+  <div class="cocktails-horizontal-scroll-container">
+    <div class="cocktails-horizontal-scroll">
+      <div class="content-box">
       <div class="content-details">
         <div class="content-info">
           <h3>Margarita</h3>
@@ -180,12 +181,14 @@ import TwoColumns from "@components/TwoColumns.astro"
          <img src=/images/oldfashioned.jpg alt="Old Fashioned">
         </div>
       </div>
+    </div>
   </div>
-</div>
+  </div>
   <div class="cocktails-scroll-controls" role="group" aria-label="Scroll cocktails">
     <button id="cocktailsLeftBtn" type="button" class="cocktails-scroll-btn" aria-label="Scroll left">‹</button>
     <button id="cocktailsRightBtn" type="button" class="cocktails-scroll-btn" aria-label="Scroll right">›</button>
   </div>
+</div>
   
 <style>
 
@@ -260,16 +263,24 @@ import TwoColumns from "@components/TwoColumns.astro"
     grid-column: 1;
   }
 }
-    .cocktails-horizontal-scroll-container {
+    .cocktails-scroll-wrapper {
       width: 60%;
       max-width: 60vw;
+      margin-left: auto;
+      margin-right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cocktails-horizontal-scroll-container {
+      width: 100%;
+      max-width: none;
       overflow-x: auto;
       overflow-y: visible;
       padding: 1rem 0;
       display: flex;
       justify-content: center;
-      margin-left: auto;
-      margin-right: 0;
+      margin: 0;
     }
     .cocktails-horizontal-scroll {
       display: flex;
@@ -304,10 +315,9 @@ import TwoColumns from "@components/TwoColumns.astro"
     position: relative;
     z-index: 1200;
     pointer-events: auto !important;
-    width: 60%;
-    max-width: 60vw;
-    margin-left: auto;
-    margin-right: 0;
+    width: 100%;
+    max-width: none;
+    margin: 0;
   }
   .cocktails-scroll-btn {
     background: var(--color-background);
