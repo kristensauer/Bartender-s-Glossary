@@ -176,4 +176,28 @@ body {
   #tools-bleed-img {
     z-index: 9999;
   }
+
+  @media (max-width: 900px) {
+    .content-box {
+      width: 100%;
+      min-width: 0;
+      max-height: none;
+      margin: 1.5rem 1rem;
+      padding: 3rem 1.25rem 2.5rem;
+    }
+    .content-info {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .content-box {
+      margin: 1rem 0.75rem;
+      border-radius: 24px;
+      padding: 2.5rem 1rem 2rem;
+    }
+    .content-info {
+      padding-inline: 1rem;
+    }
+  }
 </style>

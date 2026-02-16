@@ -138,6 +138,7 @@ import ShotsSection from "@components/ShotsSection.astro";
     gap: 2rem;
     margin-top: 15vw;
     margin-bottom: 0rem;
+    flex-wrap: wrap;
     pointer-events: auto;
     z-index: 3;
   }
@@ -416,4 +417,114 @@ import ShotsSection from "@components/ShotsSection.astro";
     width: 100%;
     color: var(--color-text);
   }
+
+    @media (max-width: 900px) {
+      .hero-overlay {
+        padding: 0 1.5rem;
+      }
+      .hero-title {
+        font-size: 1.6rem;
+        margin-top: 22vw;
+        white-space: normal;
+        text-align: center;
+      }
+      .hero-subtitle,
+      .hero-image-container p.hero-subtitle {
+        font-size: 1.8rem;
+        margin-top: 28vw;
+      }
+      .hero-image-container p.hero-subtitle2 {
+        font-size: 1.6rem;
+        top: 22%;
+        white-space: normal;
+        text-align: center;
+      }
+      .nav-buttons-container {
+        gap: 1rem;
+        margin-top: 22vw;
+      }
+      .nav-btn {
+        min-width: 140px;
+        min-height: 48px;
+        font-size: 1.1rem;
+      }
+      img {
+        height: 360px;
+      }
+      .hand-png {
+        width: 65vw;
+        margin-top: -18rem;
+      }
+      .shots-background-content-box {
+        margin: 12rem 0 2vw;
+        padding: 4vw 4vw 6vw;
+      }
+      .tools-bleed-img {
+        width: 36vw;
+        bottom: -4vw;
+      }
+      .tools-bleed-img-right {
+        width: 44vw;
+        bottom: 6vw;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-image-container {
+        height: 60vh;
+      }
+      .hero-overlay {
+        top: 0;
+        justify-content: center;
+        gap: 0.15rem;
+      }
+      .hero-title {
+        font-size: 1.3rem;
+        margin-top: 0;
+        padding: 0.25rem 0.75rem;
+      }
+      .hero-subtitle,
+      .hero-image-container p.hero-subtitle {
+        font-size: 1.4rem;
+        margin-top: 0;
+        margin-bottom: 0.1rem;
+        background: rgba(3, 5, 7, 0.35);
+        border-radius: 999px;
+        padding: 0.35rem 0.75rem;
+      }
+      .hero-image-container p.hero-subtitle2 {
+        font-size: 1.2rem;
+        position: static;
+        transform: none;
+        margin-top: 2.5rem;
+        padding: 0.3rem 0.6rem;
+        border-radius: 999px;
+        text-align: center;
+        white-space: normal;
+      }
+      .nav-buttons-container {
+        margin-top: 1.5rem;
+      }
+      .nav-btn {
+        width: 100%;
+        max-width: 240px;
+      }
+      img {
+        height: 260px;
+      }
+      .hand-png {
+        width: 80vw;
+        margin-top: -10rem;
+      }
+      .shots-background-content-box {
+        margin: 8rem 0 1rem;
+      }
+      .tools-bleed-img {
+        width: 46vw;
+      }
+      .tools-bleed-img-right {
+        width: 52vw;
+        bottom: 0;
+      }
+    }
 </style>
